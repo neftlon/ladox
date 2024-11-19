@@ -8,6 +8,4 @@
       "extensions": ["James-Yu.latex-workshop"]
     }
   }
-  //"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
-  //"workspaceFolder": "/workspace"
 }
