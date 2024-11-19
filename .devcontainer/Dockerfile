@@ -1,8 +1,15 @@
 FROM ubuntu:latest
 
 # install required packages
-RUN apt-get update && \
-  apt-get -y install curl git perl
+RUN apt-get update && apt-get install -y \
+  curl git locales perl \
+  && rm -rf /var/lib/apt/lists/*
+
+# setup locale such that perl is happy
+RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+    dpkg-reconfigure --frontend=noninteractive locales && \
+    update-locale LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8 LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
 # download texlive
 RUN cd /tmp && \
